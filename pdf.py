@@ -43,7 +43,7 @@ It was easier for bug fixes and improvments to have it in one place then on ever
 PC. But later, the possibility to run it on every pc was added, per request.
 """
 
-
+import sys
 import pdfplumber
 from openpyxl import Workbook
 import PySimpleGUIQt as sg
@@ -223,6 +223,10 @@ window = sg.Window("DC Mini v0.1", layout)
 while True:  # Event Loop
     event, values = window.read()
     path_to_file_saob = values[0]
+
+    if not path_to_file_saob:
+        window.close()
+        sys.exit()
 
     if "server-pc" in path_to_file_saob:
         path_to_file_saob = values[0][5:]
